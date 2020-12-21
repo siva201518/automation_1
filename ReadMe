@@ -1,0 +1,27 @@
+
+
+Steps to run standalone project
+i) git path:
+I have placed the project in below git hub path.
+https://github.com/siva201518/automation_1.git
+
+ii) Create one folder in desktop (for example name- Automation)
+Right click->git bash here-> in cmd prompt, type "git init"
+then, type "git clone https://github.com/siva201518/automation_1.git"
+The project will get cloned to this path.
+
+iii) In IntelliJ/Eclipse: File->Open->Open File or Project- > Select Automation folder (desktop) path and select "Pom.xml".
+Open it as project.
+iv) In Intellij/Eclipse ->Terminal-> Type "mvn clean install".
+Project along with dependencies will get created automatically.
+
+v) Navigate to "src/main/java/TestRunner" (For creating runnable jar, I have placed the "TestRunner" in Main folder).
+Ideally, it should be in Test Folder.
+Right click on TestRunner and select "Run as TestRunner".
+vi) Scenarios in feature files will get executed and cucumber reports genereated in "target->cucumber->cucumber-html-reports->
+report-feature_****(numbers).html".
+ Right click on ths file -> Open in->Browser->Chrome. The cucumber reports will open up in chrome browser.
+
+I have attached the sample cucumber report generated.
+
+
