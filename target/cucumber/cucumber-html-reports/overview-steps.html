@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports  - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>No Name (add projectName to cucumber-reporting.properties)</td>
+      <td>21 Dec 2020, 23:52</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">glue.MainPageGlue.click_module(java.lang.String)</td>
+              <td>12</td>
+              <td class="duration" data-value="1161666666">1.161</td>
+              <td class="duration" data-value="1161666666">4.129</td>
+              <td class="duration" data-value="13940000000">13.940</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.MainPageGlue.close_browser()</td>
+              <td>13</td>
+              <td class="duration" data-value="192307692">0.192</td>
+              <td class="duration" data-value="192307692">0.650</td>
+              <td class="duration" data-value="2500000000">2.500</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.MainPageGlue.login_to_the_application()</td>
+              <td>13</td>
+              <td class="duration" data-value="6666846153">6.666</td>
+              <td class="duration" data-value="6666846153">7.731</td>
+              <td class="duration" data-value="86669000000">1:26.669</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.MainPageGlue.search_with_module_name(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="128000000">0.128</td>
+              <td class="duration" data-value="128000000">0.128</td>
+              <td class="duration" data-value="128000000">0.128</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.MainPageGlue.validate_filtered_modules_matched_with_search_string(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="240000000">0.240</td>
+              <td class="duration" data-value="240000000">0.240</td>
+              <td class="duration" data-value="240000000">0.240</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.MainPageGlue.validating_page_title(java.lang.String)</td>
+              <td>1</td>
+              <td class="duration" data-value="8000000">0.008</td>
+              <td class="duration" data-value="8000000">0.008</td>
+              <td class="duration" data-value="8000000">0.008</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.activeUserGroupGlue.print_result_user_group_names()</td>
+              <td>1</td>
+              <td class="duration" data-value="1462000000">1.462</td>
+              <td class="duration" data-value="1462000000">1.462</td>
+              <td class="duration" data-value="1462000000">1.462</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.activeUserGroupGlue.validating_modules_title(java.lang.String)</td>
+              <td>12</td>
+              <td class="duration" data-value="78000000">0.078</td>
+              <td class="duration" data-value="78000000">0.168</td>
+              <td class="duration" data-value="936000000">0.936</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.activeUserGroupGlue.validating_result_user_group_counts_are_greater_than_events(java.lang.Integer)</td>
+              <td>1</td>
+              <td class="duration" data-value="984000000">0.984</td>
+              <td class="duration" data-value="984000000">0.984</td>
+              <td class="duration" data-value="984000000">0.984</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.repositoriesPerProgramGlue.select_radio_button(java.lang.String)</td>
+              <td>3</td>
+              <td class="duration" data-value="247666666">0.247</td>
+              <td class="duration" data-value="247666666">0.288</td>
+              <td class="duration" data-value="743000000">0.743</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">glue.repositoriesPerProgramGlue.validating_results_based_on_languages_selected()</td>
+              <td>3</td>
+              <td class="duration" data-value="112000000">0.112</td>
+              <td class="duration" data-value="112000000">0.168</td>
+              <td class="duration" data-value="336000000">0.336</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>11</td>
+            <td>61</td>
+            <td class="duration">1.769</td>
+            <td class="duration">1:26.669</td>
+            <td class="duration">1:47.946</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>
