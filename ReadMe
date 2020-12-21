@@ -1,13 +1,4 @@
-Steps to run project
 
-Runnable Jar:
-
-I have created runnable jar file and please find the attached same. However, when i try to execute file in cmd prompt with below commands, I am seeing "glue" file path
-has some issues and "MainPageGlue" has failed instantiate. Trying to debug it but no luck till now. 
-
-I will try to fix this issue before the Assignment interview.
-
-java -jar automation_1.jar classpath:features/scenario.feature --glue classpath:glue
 
 Steps to run standalone project
 i) git path:
