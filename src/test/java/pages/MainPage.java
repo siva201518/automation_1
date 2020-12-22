@@ -2,6 +2,7 @@ package pages;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -38,8 +39,12 @@ public class MainPage extends Base {
     }
 
     public void enterSearch(String text) {
-        driver.findElement(By.id("search")).sendKeys(text);
-
+        try {
+            driver.findElement(By.id("search")).sendKeys(text);
+            System.out.println("Searching with module name in search box: " + text);
+        } catch (NoSuchElementException e) {
+            System.out.println("Not able to select/enter values in to the search box");
+        }
 
 
     }
@@ -51,9 +56,9 @@ public class MainPage extends Base {
 
 
             if (compare.getText().contains(moduleName)) {
-                System.out.println("Module Names: " + compare.getText());
+                System.out.println("Searched modules names are contains searched text:  " + compare.getText());
             } else {
-                System.out.println("results are not contains searched names");
+                System.out.println("results are not contains searched module names ");
             }
         }
 
@@ -62,6 +67,7 @@ public class MainPage extends Base {
 
     public ActiveUserGroupPage clickRepoLink(String moduleName) throws IOException {
         driver.findElement(By.xpath("//p[contains(text(), '" + moduleName + "')]")).click();
+        System.out.println("User has successfully clicked and navigated to the module: " + moduleName);
 
         return new ActiveUserGroupPage();
 

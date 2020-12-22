@@ -1,8 +1,6 @@
 package glue;
 
 
-
-
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,8 +29,6 @@ public class MainPageGlue extends Base {
     }
 
 
-
-
     @Given("^user login to the application$")
     public void login_to_the_application() {
         Base.init();
@@ -43,15 +39,15 @@ public class MainPageGlue extends Base {
     @Then("^validating page title \"([^\"]*)\"$")
     public void validating_page_title(String title) {
         {
-              String text = null;
+            String text = null;
             try {
 
                 text = driver.getTitle();
                 Assert.assertEquals(text, title);
-                System.out.println("Page title: " + text);
+                System.out.println("Page title are matching: Expected- " + title + " Actual- " + text);
             } catch (Exception e) {
-                 System.out.println("PageTitles are not matching: "+text);
-                 driver.quit();
+                System.out.println("PageTitles are not matching: Expected- " + title + " Actual- " + text);
+
             }
         }
     }
@@ -74,14 +70,13 @@ public class MainPageGlue extends Base {
 
     @Then("^validating module title \"([^\"]*)\"$")
     public void validating_module_title(String title) {
-        String text= null;
+        String text = null;
         text = ap.getModuleTitle();
         try {
             Assert.assertEquals(text, title);
-            System.out.println("Page title: " + text);
-        } catch (Exception e)
-        {
-            System.out.println("Page titles are not matching"+text);
+            System.out.println("Page title are matching: Expected- " + title + " Actual- " + text);
+        } catch (Exception e) {
+            System.out.println("PageTitles are not matching: Expected- " + title + " Actual- " + text);
             driver.quit();
         }
 
@@ -91,6 +86,7 @@ public class MainPageGlue extends Base {
     @And("^close browser$")
     public void close_browser() {
         driver.close();
+        System.out.println("Closed browser ");
     }
 
 

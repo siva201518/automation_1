@@ -1,5 +1,6 @@
 package pages;
 
+import com.google.common.base.Verify;
 import utils.Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -43,7 +44,7 @@ public class ActiveUserGroupPage extends Base {
         for (org.openqa.selenium.WebElement print : userGroupNames) {
             countStr = print.getText();
 
-            System.out.println("User Group Label :" + countStr);
+            System.out.println("Active User Group Labels :" + countStr);
         }
 
     }
@@ -56,9 +57,10 @@ public class ActiveUserGroupPage extends Base {
             countStr = print.getText();
             int count = Integer.parseInt(countStr);
             if (count < number) {
-                System.out.println("User Group Events counts are less than 5: " + count);
+                Verify.verify(count < number);
+                System.out.println("User Group Events Labels which are less than given event numbers: " + count);
             } else {
-                System.out.println("----User Group Label :" + countStr);
+                System.out.println("User Group Labels greater than given event numbers :" + countStr);
             }
         }
     }

@@ -9,11 +9,11 @@ Feature: Main
     Then validate filtered modules matched with search string "<moduleName>"
     And close browser
     Examples:
-    |moduleName|
-    |events    |
+      | moduleName |
+      | events     |
 
 
- @mainpage
+  @mainpage
   Scenario Outline: Main page- validate all modules navigation from main page "<moduleName>" and its page title "<title>"
     Given user login to the application
     And click module "<moduleName>"
@@ -30,7 +30,7 @@ Feature: Main
       | event locations         | popular event locations            |
       | event duration          | events by duration                 |
 
-@activeUserGroup
+  @activeUserGroup
   Scenario Outline: Active User Group-validate user group names and its counts
     Given user login to the application
     And click module "<moduleName>"
@@ -43,7 +43,7 @@ Feature: Main
       | moduleName         | title                              | count |
       | active user groups | active user groups with > 5 events | 5     |
 
-@repositoriesPerProgramming
+  @repositoriesPerProgramming
   Scenario Outline: Repositories Per Programming Language- Validate results based on programming language selected "<language>"
     Given user login to the application
     And click module "<moduleName>"

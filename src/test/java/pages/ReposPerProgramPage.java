@@ -1,5 +1,7 @@
 package pages;
 
+import org.openqa.selenium.ElementNotSelectableException;
+import org.openqa.selenium.ElementNotVisibleException;
 import utils.Base;
 
 import org.openqa.selenium.By;
@@ -27,9 +29,16 @@ public class ReposPerProgramPage extends Base {
 
     public void selectRadioButton(String languageName) throws IOException {
 
-        Actions actions = new Actions(driver);
-        WebElement elementLocator = driver.findElement(By.xpath("//label[contains(.,'" + languageName + "')]/input"));
-        actions.doubleClick(elementLocator).perform();
+
+        try {
+            Actions actions = new Actions(driver);
+            WebElement elementLocator = driver.findElement(By.xpath("//label[contains(.,'" + languageName + "')]/input"));
+
+            actions.doubleClick(elementLocator).perform();
+        } catch (ElementNotSelectableException e) {
+            System.out.println("Not able to select radio button");
+        }
+        System.out.println("Selected give radio button: " + languageName);
 
 
     }
@@ -37,7 +46,6 @@ public class ReposPerProgramPage extends Base {
     public <WebElement> void selectLangList() throws IOException {
 
         String listCount = "";
-
 
 
         List<org.openqa.selenium.WebElement> langListcount = driver.findElements(By.xpath("//div[@class='graph list-lang']//p"));
