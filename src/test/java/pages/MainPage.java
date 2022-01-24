@@ -1,6 +1,8 @@
 package pages;
 
 
+import junit.framework.AssertionFailedError;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -21,57 +23,44 @@ public class MainPage extends Base {
     }
 
 
-    @FindBy(xpath = "//p[contains(text(), 'repos per week')]")
-    @CacheLookup
-    WebElement repoPerWeek;
-
-    @FindBy(id = "search")
-    @CacheLookup
-    WebElement search;
-
-    @FindBy(xpath = "//p[contains(text(), '${moduleName}')]")
-    @CacheLookup
-    WebElement moduleNames;
+    public String search = "searchInput";
+    public String searchButton = "searchButton";
 
 
-    public void clickRepoLink() {
-        repoPerWeek.click();
-    }
 
-    public void enterSearch(String text) {
+    public CelebrityPage enterSearch(String text) throws IOException {
         try {
-            driver.findElement(By.id("search")).sendKeys(text);
-            System.out.println("Searching with module name in search box: " + text);
+            driver.findElement(By.id(search)).sendKeys(text);
+            driver.findElement(By.id(searchButton)).click();
+            System.out.println("Searching with celebrity name in search box: " + text);
+
+
         } catch (NoSuchElementException e) {
             System.out.println("Not able to select/enter values in to the search box");
         }
-
+        return new CelebrityPage();
 
     }
 
-    public <WebElement> void getModuleNames(String moduleName) {
+    public LanguagePage clickLanguage(String text) throws IOException {
+        try {
+            driver.findElement((By.xpath("//*[contains(@title,'" + text + "')]"))).click();
 
-        List<org.openqa.selenium.WebElement> module = driver.findElements(By.xpath("//p[contains(text(), '" + moduleName + "')]"));
-        for (org.openqa.selenium.WebElement compare : module) {
+            System.out.println("clicked the new language : " + text);
 
 
-            if (compare.getText().contains(moduleName)) {
-                System.out.println("Searched modules names are contains searched text:  " + compare.getText());
-            } else {
-                System.out.println("results are not contains searched module names ");
-            }
+        } catch (NoSuchElementException e) {
+
+            Assert.fail("Not able to click the given language link");
+
         }
 
-
+        return new LanguagePage();
     }
 
-    public ActiveUserGroupPage clickRepoLink(String moduleName) throws IOException {
-        driver.findElement(By.xpath("//p[contains(text(), '" + moduleName + "')]")).click();
-        System.out.println("User has successfully clicked and navigated to the module: " + moduleName);
 
-        return new ActiveUserGroupPage();
 
-    }
+
 
 
 }

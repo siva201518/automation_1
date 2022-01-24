@@ -1,58 +1,46 @@
 @selenium
 Feature: Main
 
-  @mainpage
-  Scenario Outline: Main page search functionality
-    Given user login to the application
-    Then validating page title "We Build SG Data"
-    And search with module name "<moduleName>"
-    Then validate filtered modules matched with search string "<moduleName>"
+  @celebrity @equ
+  Scenario Outline: Wikipedia- Celebrity search and birthday/spouse details- "<celebrityName>"
+    Given user navigate to the Wikipedia Home page
+    Then validating page title "Wikipedia, the free encyclopedia"
+    And search with celebrity name "<celebrityName>"
+    Then validating page title "<celebrityName> - Wikipedia"
+    Then print celebrity birth day "<celebrityName>"
+    Then print celebrity spouse name "<celebrityName>"
     And close browser
     Examples:
-      | moduleName |
-      | events     |
+      | celebrityName         |
+      | Ed Sheeran            |
+      | Vijay Deverakonda     |
+      | Johnny Depp           |
+      | Al Pacino             |
+      | Robert De Niro        |
+      | Kevin Spacey          |
+      | Angelina Jolie        |
+      | Christian Bale        |
+      | Arnold Schwarzenegger |
+      | Sylvester Stallone    |
 
 
-  @mainpage
-  Scenario Outline: Main page- validate all modules navigation from main page "<moduleName>" and its page title "<title>"
-    Given user login to the application
-    And click module "<moduleName>"
-    Then validating modules title "<title>"
+  @language @equ
+  Scenario Outline: Wikipedia- language page- "<lang>"
+    Given user navigate to the Wikipedia Home page
+    Then validating page title "Wikipedia, the free encyclopedia"
+    And click language link "<lang>"
+    Then Validate page title for language "<langTitle>"
     And close browser
     Examples:
-      | moduleName              | title                              |
-      | active user groups      | active user groups with > 5 events |
-      | event day of week       | events by day of week              |
-      | repos per week          | repositories updated per week      |
-      | events per week         | events per week                    |
-      | active repositories     | active repos with > 10 updates     |
-      | event per week of month | events per week of month           |
-      | event locations         | popular event locations            |
-      | event duration          | events by duration                 |
+      | lang       | langTitle                          |
+      | Spanish    | Wikipedia, la enciclopedia libre   |
+      | German     | Wikipedia – Die freie Enzyklopädie |
+      | Dutch      | Wikipedia, de vrije encyclopedie   |
+      | Swedish    | Wikipedia, den fria encyklopedin   |
+      | Portuguese | Wikipédia, a enciclopédia livre    |
+      | Italian    | Wikipedia, l'enciclopedia libera   |
+      | Slovenian  | Wikipedija                         |
+      | Finnish    | Wikipedia, vapaa tietosanakirja    |
+      | Polish     | Wikipedia, wolna encyklopedia      |
 
-  @activeUserGroup
-  Scenario Outline: Active User Group-validate user group names and its counts
-    Given user login to the application
-    And click module "<moduleName>"
-    Then validating modules title "<title>"
-    Then print result user group names
-    Then validating result user group counts are greater than "<count>" events
-    And close browser
 
-    Examples:
-      | moduleName         | title                              | count |
-      | active user groups | active user groups with > 5 events | 5     |
-
-  @repositoriesPerProgramming
-  Scenario Outline: Repositories Per Programming Language- Validate results based on programming language selected "<language>"
-    Given user login to the application
-    And click module "<moduleName>"
-    Then validating modules title "<title>"
-    And select "<language>" radio button
-    Then validating results based on languages selected
-    And close browser
-    Examples:
-      | moduleName                            | title                                  | language |
-      | repositories per programming language | repositories per programming languages | Clojure  |
-      | repositories per programming language | repositories per programming languages | R        |
-      | repositories per programming language | repositories per programming languages | Tex      |

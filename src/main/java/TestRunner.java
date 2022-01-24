@@ -16,7 +16,8 @@ import java.util.Base64;
         (
                 features = "src/test/resources/features",
                 //  glue= {"classpath:glue"},
-                glue = {""},
+               // glue = {""},
+                tags = "@equ",
               //  tags = "@repositoriesPerProgramming",
                 stepNotifications = true,
                 // plugin = {"pretty", "html:target/report/cucumber.html", "json:target/report/cucumber.json", "junit:target/report/cucumber.xml"},
