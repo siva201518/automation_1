@@ -27,8 +27,7 @@ public class MainPage extends Base {
     public String searchButton = "searchButton";
 
 
-
-    public CelebrityPage enterSearch(String text) throws IOException {
+    public LoginPage enterSearch(String text) throws IOException {
         try {
             driver.findElement(By.id(search)).sendKeys(text);
             driver.findElement(By.id(searchButton)).click();
@@ -38,29 +37,25 @@ public class MainPage extends Base {
         } catch (NoSuchElementException e) {
             System.out.println("Not able to select/enter values in to the search box");
         }
-        return new CelebrityPage();
+        return new LoginPage();
 
     }
 
-    public LanguagePage clickLanguage(String text) throws IOException {
+    public LoginPage clickAuthentication() throws IOException {
         try {
-            driver.findElement((By.xpath("//*[contains(@title,'" + text + "')]"))).click();
+            driver.findElement(By.linkText("Form Authentication")).click();
 
-            System.out.println("clicked the new language : " + text);
+            System.out.println("clicked the form authentication link : ");
 
 
         } catch (NoSuchElementException e) {
 
-            Assert.fail("Not able to click the given language link");
+            Assert.fail("Not able to click the given link");
 
         }
 
-        return new LanguagePage();
+        return new LoginPage();
     }
-
-
-
-
 
 
 }

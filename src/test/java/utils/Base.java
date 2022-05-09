@@ -28,7 +28,7 @@ public class Base {
     }
 
 
-    public static void init() {
+    public static void init() throws InterruptedException {
         String browserName = prop.getProperty("browser");
         if (browserName.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//Drivers//chromedriver.exe");
@@ -43,5 +43,9 @@ public class Base {
         driver.manage().timeouts().implicitlyWait(TestUtils.IMPLICIT_WAIT, TimeUnit.SECONDS);
         driver.get(prop.getProperty("url"));
         System.out.println("Browser has initialized successfully with given URL: " + prop.getProperty("url"));
+
+        // API
+
+
     }
 }

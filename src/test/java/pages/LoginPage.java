@@ -1,75 +1,74 @@
 package pages;
 
-import com.google.common.base.Verify;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.Base;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class CelebrityPage extends Base {
+public class LoginPage extends Base {
 
     public MainPage mp;
 
-    public String birthdayxpath = "//*[@id='mw-content-text']//table/tbody//tr[contains(.,'Born')] //td[contains(@class, 'infobox-data')]";
-    public String spouseXpath = "//*[@id='mw-content-text']//table/tbody//tr[contains(.,'Spouse(s)')] //td[contains(@class, 'infobox-data')]";
+    public String userId = "username";
+    public String password = "password";
 
-    public CelebrityPage() throws IOException {
+    public LoginPage() throws IOException {
         super();
         PageFactory.initElements(driver, this);
     }
 
-    public void getBirthDay(String celebrityName) throws IOException {
-        String birthDay;
+    public String txtErrorMessage = "//div[@class='flash error']";
+
+    public void enterUserName(String userName) throws IOException {
 
 
         try {
-            birthDay = driver.findElement(By.xpath(birthdayxpath)).getText();
-            int count = 0;
-
-            String[] strSplit = birthDay.split("\\R");
-
-
-            ArrayList<String> strList = new ArrayList<String>(
-                    Arrays.asList(strSplit));
-
-            for (String s : strList) {
-                if (s.contains("age")
-                ) {
-                    System.out.println("Celebrity- " + celebrityName + " Birthdate as: " + s);
-                    count++;
-
-                }
-            }
-            if (count == 0) {
-                System.out.println("Celebrity- " + celebrityName + " Birthdate is not available");
-            }
-
+            driver.findElement(By.id(userId)).sendKeys(userName);
 
         } catch (NoSuchElementException e) {
-            System.out.println("Not able to click/get birthday");
+            System.out.println("Not able to enter username");
+        }
+    }
+
+    public void enterpassword(String Password) throws IOException {
+
+
+        try {
+            driver.findElement(By.id(password)).sendKeys(Password);
+
+        } catch (NoSuchElementException e) {
+            System.out.println("Not able to enter password");
         }
     }
 
 
-    public void getSpouseName(String celebrityName)  {
-        String spouseName;
+    public void clickLogin() throws IOException {
 
 
         try {
-            spouseName = driver.findElement(By.xpath(spouseXpath)).getText();
+            driver.findElement(By.cssSelector("[type='submit'][class='radius']")).click();
+            System.out.println("clicked the login button ");
 
-
-            System.out.println("Celebrity- " + celebrityName + " Spouse Name is/are : " + spouseName);
 
         } catch (NoSuchElementException e) {
-            System.out.println("Celebrity- " + celebrityName + " has no spouse");
+            System.out.println("Not able to click login button");
+        }
 
+    }
+
+    public void validateErrorMessage(String expMsg) throws IOException {
+
+        try {
+            String actualMsg = driver.findElement(By.xpath(txtErrorMessage)).getText();
+            System.out.println("Actual message as :" + actualMsg);
+            Assert.assertTrue(actualMsg.contains(expMsg));
+        } catch (NoSuchElementException e) {
+            System.out.println("not able to view error msg");
         }
     }
 

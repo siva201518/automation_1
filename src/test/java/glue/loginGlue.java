@@ -1,38 +1,47 @@
 package glue;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import pages.CelebrityPage;
-import pages.LanguagePage;
+import pages.LoginPage;
 import pages.MainPage;
 import utils.Base;
 
 import java.io.IOException;
 
-public class languageGlue extends Base {
+public class loginGlue extends Base {
 
     MainPage mp = new MainPage();
-    CelebrityPage cp = new CelebrityPage();
-    LanguagePage lp = new LanguagePage();
+    LoginPage lp = new LoginPage();
 
-    public languageGlue() throws IOException {
+
+    public loginGlue() throws IOException {
+    }
+
+    @And("^enter user name \"([^\"]*)\"$")
+    public void enter_userName(String userName) throws IOException {
+        lp.enterUserName(userName);
+
+    }
+
+    @And("^enter password \"([^\"]*)\"$")
+    public void enter_password(String password) throws IOException {
+        lp.enterpassword(password);
+
+    }
+
+    @And("click login button")
+    public void click_login_button() throws IOException {
+        lp.clickLogin();
+
+    }
+
+    @And("^validate error message \"([^\"]*)\"$")
+    public void validate_error_message(String msg) throws IOException {
+        lp.validateErrorMessage(msg);
+
     }
 
 
-    @Then("^Validate page title for language \"([^\"]*)\"$")
-    public void validating_lang_pageTitle(String title) {
-        String text = null;
-
-        try {
-            text = driver.getTitle();
-            Assert.assertEquals(text, title);
-            System.out.println("Expected: " + title + " Actual: " + text);
-
-
-        } catch (Exception e) {
-            System.out.println("PageTitles are not matching: Expected- " + title + " Actual- " + text);
-        }
-
-
-    }
 }
+

@@ -5,7 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import pages.CelebrityPage;
+import pages.LoginPage;
 import pages.MainPage;
 import utils.Base;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MainPageGlue extends Base {
     MainPage mp = new MainPage();
 
-    CelebrityPage cp = new CelebrityPage();
+    LoginPage lp = new LoginPage();
 
     public MainPageGlue() throws IOException {
 
@@ -23,8 +23,8 @@ public class MainPageGlue extends Base {
     }
 
 
-    @Given("^user navigate to the Wikipedia Home page$")
-    public void login_to_the_application() {
+    @Given("^user navigate to The Internet Home page$")
+    public void login_to_the_application() throws InterruptedException {
         Base.init();
 
 
@@ -46,14 +46,11 @@ public class MainPageGlue extends Base {
         }
     }
 
-    @And("^search with celebrity name \"([^\"]*)\"$")
-    public void search_with_module_name(String text) throws IOException {
-        mp.enterSearch(text);
-    }
 
-    @And("^click language link \"([^\"]*)\"$")
-    public void search_with_lang_name(String text) throws IOException {
-        mp.clickLanguage(text);
+    @And("click authentication link")
+    public void click_authentication_link() throws IOException {
+        mp.clickAuthentication();
+
     }
 
 
