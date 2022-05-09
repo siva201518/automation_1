@@ -18,6 +18,9 @@ Project along with dependencies will get created automatically.
 v) Navigate to "src/main/java/TestRunner" (For creating runnable jar, I have placed the "TestRunner" in Main folder).
 Ideally, it should be in Test Folder.
 Right click on TestRunner and select "Run as TestRunner".
+
+One more way to import using IntelliJ - "File->New->Project from version control" and provide git clone link.
+
 vi) Scenarios in feature files will get executed and cucumber reports genereated in "target->cucumber->cucumber-html-reports->
 report-feature_****(numbers).html".
  Right click on ths file -> Open in->Browser->Chrome. The cucumber reports will open up in chrome browser.
